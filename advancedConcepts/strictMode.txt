@@ -1,0 +1,7 @@
+Situation             | Normal mode              | Strict mode
+----------------------|--------------------------|----------------------
+Plain function `this` | Global object            | `undefined`
+Undeclared variable   | Creates global variable  | Throws `ReferenceError`
+Invalid assignment    | May fail silently        | Throws an error
+Duplicate parameters  | Allowed                  | Syntax error
+Object method         | `this` is `obj`          | `this` is `obj`
