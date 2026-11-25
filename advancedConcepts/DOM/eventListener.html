@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener</title>
+</head>
+<body>
+    <!-- Event Example -->
+     <!-- <button onclick="alert('Clicked')">Click Me</button> -->
+
+    <!-- Inline Event Listener  : not recommended -->
+    <!-- <button id="btn" onclick="sayHello()">Click Me</button> -->
+
+    <!-- HTML DOM Property : it is alos not recommended -->
+     <button id="btn">Click Me</button>
+
+
+    <!-- Event Remove -->
+     <br><br>
+     <button id="targetBtn">Target Button</button>
+     <button id="removeBtn">Remove Button</button>
+
+    <script>
+        // Event - it is defined as an action on an element
+
+        // Event Listener 
+        // document.getElementById("btn").addEventListener("click", function(){
+        //     alert("Button  was clicked");
+        // });
+
+        // 1. Inline Event  : Not recommended
+        function sayHello(){
+            alert("Say Hello");
+        }
+
+        // 2. HTML DOM Event  : also not recommended
+        // document.getElementById("btn").onclick = function(){
+        //     alert("Clicked");
+        // }
+
+        // 3. Add Event Listener : recommended
+        // document.getElementById("btn").addEventListener("click", function(){
+        //     alert("Clicked");
+        // });
+
+        // document.getElementById("btn").addEventListener("click", sayHello);
+
+        document.getElementById("btn").addEventListener("click", ()=>{alert("Clicked")});
+
+        // Remove event example
+        // for removing the event the same function reference is needed
+        const targetBtn = document.querySelector("#targetBtn");
+        const removeBtn = document.querySelector("#removeBtn");
+        targetBtn.addEventListener("click", sayHello);
+        removeBtn.addEventListener("click",()=>{
+            targetBtn.removeEventListener("click", sayHello);
+            alert("Removed");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+</head>
+
+<body>
+    <button id="add-btn">Add Item</button>
+    <ul id="item-list">
+        <li>Item 1 <button class="delete-btn">Delete</button></li>
+    </ul>
+
+    <script>
+        const list = document.getElementById('item-list');
+        const addBtn = document.getElementById('add-btn');
+        let count = 1;
+
+        addBtn.addEventListener('click', () => {
+            count++;
+            list.innerHTML += `<li>Item ${count} <button class="delete-btn">Delete</button></li>`;
+        });
+        list.addEventListener('click', (e) => {
+            if(e.target.classList.contains('delete-btn')) e.target.parentElement.remove();
+        });
+
+        // 
+        // 2. Delegate events to the static parent container
+  list.addEventListener('click', (event) => {
+    // Check if the clicked element (or its ancestor) is a delete button
+    const deleteBtn = event.target.closest('.delete-btn');
+    
+    if (deleteBtn) {
+      const listItem = deleteBtn.closest('li');
+      listItem.remove();
+    }
+  });
+
+    </script>
+</body>
+
+</html>

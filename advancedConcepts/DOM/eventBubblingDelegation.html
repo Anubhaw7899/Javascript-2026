@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling and Delegation</title>
+</head>
+
+<body>
+    <!-- Event bubbling example
+        Event bubbling is when an event starts
+        on the element that was interacted with and 
+        then travels upward through its ancestors. 
+    -->
+    <div id="parent">
+        <button id="child">Click Me</button>
+    </div>
+
+    <br><br>
+    <!-- Event delegation example -->
+    <ul id="menu">
+        <li data-page="home">Home</li>
+        <li data-page="about">About</li>
+        <li data-page="contact">Contact</li>
+    </ul>
+
+    <script>
+
+        // Event bubbling example
+        document.getElementById("parent").addEventListener("click", () => { alert("Parent clicked") });
+        document.getElementById("child").addEventListener("click", () => { alert("Child clicked") });
+
+        // Event delegation example
+        document.getElementById("menu").addEventListener("click", (event) => {
+            if(event.target.tagName === "LI") alert(event.target.dataset.page);
+        });
+
+        // Event Delegation benefits: less listeners, dynamic elements work too
+        // Works for future added items too
+        // Can handle many items with one listener
+
+        // less listener example
+        document.getElementById("menu").addEventListener("click", (event) => {
+            if(event.target.tagName === "LI") alert(event.target.dataset.page);
+        });
+
+        // dynamic element creation with event delegation example
+        
+    </script>
+</body>
+
+</html>
